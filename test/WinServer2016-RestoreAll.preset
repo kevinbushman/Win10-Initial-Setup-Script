@@ -61,7 +61,7 @@ EnableStickyKeys
 HideTaskManagerDetails
 HideFileOperationsDetails
 DisableFileDeleteConfirm
-ShowTaskbarSearchBox
+ShowTaskbarSearch
 ShowTaskView
 ShowLargeTaskbarIcons
 HideTaskbarTitles
