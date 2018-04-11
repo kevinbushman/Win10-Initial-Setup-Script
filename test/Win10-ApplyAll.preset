@@ -22,6 +22,7 @@ SetUACLow
 EnableSharingMappedDrives
 DisableAdminShares
 DisableSMBServer
+DisableLLMNR
 SetCurrentNetworkPrivate
 SetUnknownNetworksPrivate
 DisableNetDevicesAutoInst
