@@ -24,7 +24,6 @@ $tweaks = @(
 	"DisableAdvertisingID",         # "EnableAdvertisingID",
 	"DisableCortana",               # "EnableCortana",
 	"DisableErrorReporting",        # "EnableErrorReporting",
-	"DisableAutoLogger",            # "EnableAutoLogger",
 	"DisableDiagTrack",             # "EnableDiagTrack",
 	"DisableWAPPush",               # "EnableWAPPush",
 
@@ -435,23 +434,6 @@ Function EnableErrorReporting {
 	Write-Output "Enabling Error reporting..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -ErrorAction SilentlyContinue
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Windows Error Reporting\QueueReporting" | Out-Null
-}
-
-# Remove AutoLogger file and restrict directory
-Function DisableAutoLogger {
-	Write-Output "Removing AutoLogger file and restricting directory..."
-	$autoLoggerDir = "$env:PROGRAMDATA\Microsoft\Diagnosis\ETLLogs\AutoLogger"
-	If (Test-Path "$autoLoggerDir\AutoLogger-Diagtrack-Listener.etl") {
-		Remove-Item -Path "$autoLoggerDir\AutoLogger-Diagtrack-Listener.etl"
-	}
-	icacls $autoLoggerDir /deny SYSTEM:`(OI`)`(CI`)F | Out-Null
-}
-
-# Unrestrict AutoLogger directory
-Function EnableAutoLogger {
-	Write-Output "Unrestricting AutoLogger directory..."
-	$autoLoggerDir = "$env:PROGRAMDATA\Microsoft\Diagnosis\ETLLogs\AutoLogger"
-	icacls $autoLoggerDir /grant:r SYSTEM:`(OI`)`(CI`)F | Out-Null
 }
 
 # Stop and disable Diagnostics Tracking Service

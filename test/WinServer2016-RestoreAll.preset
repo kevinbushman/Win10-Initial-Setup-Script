@@ -15,7 +15,6 @@ EnableFeedback
 EnableAdvertisingID
 EnableCortana
 EnableErrorReporting
-EnableAutoLogger
 EnableDiagTrack
 EnableWAPPush
 

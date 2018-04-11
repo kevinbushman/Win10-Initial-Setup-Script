@@ -15,7 +15,6 @@ DisableFeedback
 DisableAdvertisingID
 DisableCortana
 DisableErrorReporting
-DisableAutoLogger
 DisableDiagTrack
 DisableWAPPush
 
