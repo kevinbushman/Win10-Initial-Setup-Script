@@ -24,7 +24,6 @@ $tweaks = @(
 	"DisableAdvertisingID",         # "EnableAdvertisingID",
 	"DisableCortana",               # "EnableCortana",
 	"DisableErrorReporting",        # "EnableErrorReporting",
-	"SetP2PUpdateLocal",            # "SetP2PUpdateInternet",
 	"DisableAutoLogger",            # "EnableAutoLogger",
 	"DisableDiagTrack",             # "EnableDiagTrack",
 	"DisableWAPPush",               # "EnableWAPPush",
@@ -436,26 +435,6 @@ Function EnableErrorReporting {
 	Write-Output "Enabling Error reporting..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -ErrorAction SilentlyContinue
 	Enable-ScheduledTask -TaskName "Microsoft\Windows\Windows Error Reporting\QueueReporting" | Out-Null
-}
-
-# Restrict Windows Update P2P only to local network
-Function SetP2PUpdateLocal {
-	Write-Output "Restricting Windows Update P2P only to local network..."
-	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config")) {
-		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" | Out-Null
-	}
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -Type DWord -Value 1
-	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization")) {
-		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization" | Out-Null
-	}
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization" -Name "SystemSettingsDownloadMode" -Type DWord -Value 3
-}
-
-# Unrestrict Windows Update P2P
-Function SetP2PUpdateInternet {
-	Write-Output "Unrestricting Windows Update P2P to internet..."
-	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -ErrorAction SilentlyContinue
-	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization" -Name "SystemSettingsDownloadMode" -ErrorAction SilentlyContinue
 }
 
 # Remove AutoLogger file and restrict directory
