@@ -38,7 +38,6 @@ EnableMeltdownCompatFlag
 DisableUpdateMSRT
 DisableUpdateDriver
 DisableUpdateRestart
-DisableHomeGroups
 DisableSharedExperiences
 DisableRemoteAssistance
 EnableRemoteDesktop

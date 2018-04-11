@@ -49,7 +49,6 @@ $tweaks = @(
 	# "DisableUpdateMSRT",          # "EnableUpdateMSRT",
 	# "DisableUpdateDriver",        # "EnableUpdateDriver",
 	"DisableUpdateRestart",         # "EnableUpdateRestart",
-	"DisableHomeGroups",            # "EnableHomeGroups",
 	"DisableSharedExperiences",     # "EnableSharedExperiences",
 	"DisableRemoteAssistance",      # "EnableRemoteAssistance",
 	"EnableRemoteDesktop",          # "DisableRemoteDesktop",
@@ -757,23 +756,6 @@ Function EnableUpdateRestart {
 	Write-Output "Enabling Windows Update automatic restart..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "NoAutoRebootWithLoggedOnUsers" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AUPowerManagement" -ErrorAction SilentlyContinue
-}
-
-# Stop and disable Home Groups services - Not applicable to Server
-Function DisableHomeGroups {
-	Write-Output "Stopping and disabling Home Groups services..."
-	Stop-Service "HomeGroupListener" -WarningAction SilentlyContinue
-	Set-Service "HomeGroupListener" -StartupType Disabled
-	Stop-Service "HomeGroupProvider" -WarningAction SilentlyContinue
-	Set-Service "HomeGroupProvider" -StartupType Disabled
-}
-
-# Enable and start Home Groups services - Not applicable to Server
-Function EnableHomeGroups {
-	Write-Output "Starting and enabling Home Groups services..."
-	Set-Service "HomeGroupListener" -StartupType Manual
-	Set-Service "HomeGroupProvider" -StartupType Manual
-	Start-Service "HomeGroupProvider" -WarningAction SilentlyContinue
 }
 
 # Disable Shared Experiences - Not applicable to Server
