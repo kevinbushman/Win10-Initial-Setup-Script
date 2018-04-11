@@ -1674,16 +1674,12 @@ Function EnableOneDrive {
 # Uninstall OneDrive - Not applicable to Server
 Function UninstallOneDrive {
 	Write-Output "Uninstalling OneDrive..."
-	Stop-Process -Name OneDrive -ErrorAction SilentlyContinue
-	Start-Sleep -s 3
-	$onedrive = "$env:SYSTEMROOT\SysWOW64\OneDriveSetup.exe"
-	If (!(Test-Path $onedrive)) {
-		$onedrive = "$env:SYSTEMROOT\System32\OneDriveSetup.exe"
-	}
-	Start-Process $onedrive "/uninstall" -NoNewWindow -Wait
-	Start-Sleep -s 3
-	Stop-Process -Name explorer -ErrorAction SilentlyContinue
-	Start-Sleep -s 3
+	Stop-Process -Name "OneDrive" -ErrorAction SilentlyContinue
+	Start-Sleep -s 2
+	Start-Process "$env:SYSTEMROOT\SysWOW64\OneDriveSetup.exe" "/uninstall" -NoNewWindow -Wait
+	Start-Sleep -s 2
+	Stop-Process -Name "explorer" -ErrorAction SilentlyContinue
+	Start-Sleep -s 2
 	Remove-Item -Path "$env:USERPROFILE\OneDrive" -Force -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\OneDrive" -Force -Recurse -ErrorAction SilentlyContinue
 	Remove-Item -Path "$env:PROGRAMDATA\Microsoft OneDrive" -Force -Recurse -ErrorAction SilentlyContinue
@@ -1698,11 +1694,7 @@ Function UninstallOneDrive {
 # Install OneDrive - Not applicable to Server
 Function InstallOneDrive {
 	Write-Output "Installing OneDrive..."
-	$onedrive = "$env:SYSTEMROOT\SysWOW64\OneDriveSetup.exe"
-	If (!(Test-Path $onedrive)) {
-		$onedrive = "$env:SYSTEMROOT\System32\OneDriveSetup.exe"
-	}
-	Start-Process $onedrive -NoNewWindow
+	Start-Process "$env:SYSTEMROOT\SysWOW64\OneDriveSetup.exe" -NoNewWindow
 }
 
 # Uninstall default Microsoft applications
