@@ -715,6 +715,8 @@ Function EnableUpdateMSRT {
 }
 
 # Disable offering of drivers through Windows Update
+# This doesn't work properly if you use a driver intended for another hardware model. Even with all the GPOs, Windows will offer their own in updates.
+# Notable example: Intel I219-V on WinServer works only with I219-LM driver, therefore Windows update will annoy you with pending I219-V driver installation indefinitely even if you use the tweak.
 Function DisableUpdateDriver {
 	Write-Output "Disabling driver offering through Windows Update..."
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Device Metadata")) {
@@ -741,7 +743,8 @@ Function EnableUpdateDriver {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "ExcludeWUDriversInQualityUpdate" -ErrorAction SilentlyContinue
 }
 
-# Disable Windows Update automatic restart - This doesn't disable the need for the restart altogether, but rather tries to ensure that the restart doesn't happen in the least expected moment. Allow the machine to restart as soon as possible anyway.
+# Disable Windows Update automatic restart
+# This doesn't disable the need for the restart altogether, but rather tries to ensure that the restart doesn't happen in the least expected moment. Allow the machine to restart as soon as possible anyway.
 Function DisableUpdateRestart {
 	Write-Output "Disabling Windows Update automatic restart..."
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU")) {
