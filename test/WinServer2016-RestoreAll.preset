@@ -7,6 +7,7 @@ EnableWiFiSense
 EnableSmartScreen
 EnableWebSearch
 EnableAppSuggestions
+EnableActivityHistory
 EnableBackgroundApps
 EnableLocationTracking
 EnableMapUpdates
