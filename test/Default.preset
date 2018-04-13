@@ -32,6 +32,7 @@ SetCurrentNetworkPrivate
 # DisableDefenderCloud
 EnableF8BootMenu
 SetDEPOptOut
+# EnableCIMemoryIntegrity
 DisableScriptHost
 EnableDotNetStrongCrypto
 # EnableMeltdownCompatFlag

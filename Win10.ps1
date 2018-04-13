@@ -42,6 +42,7 @@ $tweaks = @(
 	# "DisableDefenderCloud",       # "EnableDefenderCloud",
 	"EnableF8BootMenu",             # "DisableF8BootMenu",
 	"SetDEPOptOut",                 # "SetDEPOptIn",
+	# "EnableCIMemoryIntegrity",    # "DisableCIMemoryIntegrity",
 	"DisableScriptHost",            # "EnableScriptHost",
 	"EnableDotNetStrongCrypto",     # "DisableDotNetStrongCrypto",
 	# "EnableMeltdownCompatFlag"    # "DisableMeltdownCompatFlag",
@@ -660,6 +661,21 @@ Function SetDEPOptOut {
 Function SetDEPOptIn {
 	Write-Output "Setting Data Execution Prevention (DEP) policy to OptIn..."
 	bcdedit /set `{current`} nx OptIn | Out-Null
+}
+
+# Enable Core Isolation Memory Integrity - Part of Windows Defender System Guard virtualization-based security - Supported from 1803
+Function EnableCIMemoryIntegrity {
+	Write-Output "Enabling Core Isolation Memory Integrity..."
+	If (!(Test-Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity")) {
+		New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Name "Enabled" -Type DWord -Value 1
+}
+
+# Disable Core Isolation Memory Integrity - 
+Function DisableCIMemoryIntegrity {
+	Write-Output "Disabling Core Isolation Memory Integrity..."
+	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" -Name "Enabled" -ErrorAction SilentlyContinue
 }
 
 # Disable Windows Script Host (execution of *.vbs scripts and alike)
