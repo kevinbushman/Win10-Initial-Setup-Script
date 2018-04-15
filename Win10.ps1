@@ -91,6 +91,7 @@ $tweaks = @(
 	# "EnableNumlock",              # "DisableNumlock",
 
 	### Explorer UI Tweaks ###
+	"EnableLastActiveClick",        # "DisableLastActiveClick",
 	"ShowKnownExtensions",          # "HideKnownExtensions",
 	# "ShowHiddenFiles",            # "HideHiddenFiles",
 	"HideSyncNotifications"         # "ShowSyncNotifications",
@@ -1365,6 +1366,18 @@ Function DisableNumlock {
 ##########
 # Explorer UI Tweaks
 ##########
+
+# Enable Last active click for taskbar icons
+Function EnableLastActiveClick {
+	Write-Output "Enabling Last Active Click..."
+	New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'LastActiveClick' -Value 1 -PropertyType DWord -Force -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable Last active click for taskbar icons
+Function DisableLastActiveClick {
+	Write-Output "Disabling Last Active Click..."
+	Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'LastActiveClick' -Force -ErrorAction SilentlyContinue
+}
 
 # Show known file extensions
 Function ShowKnownExtensions {
