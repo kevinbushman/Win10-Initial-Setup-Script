@@ -89,6 +89,7 @@ $tweaks = @(
 	# "SetVisualFXPerformance",     # "SetVisualFXAppearance",
 	# "AddENKeyboard",              # "RemoveENKeyboard",
 	# "EnableNumlock",              # "DisableNumlock",
+	"DarkDefaultAppMode",           # "LightDefaultAppMode",
 
 	### Explorer UI Tweaks ###
 	"EnableLastActiveClick",        # "DisableLastActiveClick",
@@ -1345,6 +1346,18 @@ Function EnableNumlock {
 		$wsh = New-Object -ComObject WScript.Shell
 		$wsh.SendKeys('{NUMLOCK}')
 	}
+}
+
+# Set default app mode to Dark
+Function DarkDefaultAppMode {
+	Write-Output "Setting default app mode to dark..."
+	New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name 'AppsUseLightTheme' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue | Out-Null
+}
+
+# Set default app mode to Light
+Function LightDefaultAppMode {
+	Write-Output "Setting default app mode to light..."
+	New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name 'AppsUseLightTheme' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue | Out-Null
 }
 
 # Disable NumLock after startup
