@@ -92,11 +92,12 @@ $tweaks = @(
 
 	### Explorer UI Tweaks ###
 	"ShowKnownExtensions",          # "HideKnownExtensions",
-	# "ShowHiddenFiles",              # "HideHiddenFiles",
+	# "ShowHiddenFiles",            # "HideHiddenFiles",
 	"HideSyncNotifications"         # "ShowSyncNotifications",
 	"HideRecentShortcuts",          # "ShowRecentShortcuts",
 	"SetExplorerThisPC",            # "SetExplorerQuickAccess",
 	"ShowThisPCOnDesktop",          # "HideThisPCFromDesktop",
+	"HideRecycleBin",               # "ShowRecycleBin",
 	# "ShowUserFolderOnDesktop",    # "HideUserFolderFromDesktop",
 	# "HideDesktopFromThisPC",      # "ShowDesktopInThisPC",
 	# "HideDesktopFromExplorer",    # "ShowDesktopInExplorer",
@@ -1445,6 +1446,33 @@ Function HideThisPCFromDesktop {
 	Write-Output "Hiding This PC shortcut from desktop..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel" -Name "{20D04FE0-3AEA-1069-A2D8-08002B30309D}" -ErrorAction SilentlyContinue
+}
+
+# Hide Recycle Bin from desktop
+Function HideRecycleBin {
+	Write-Output "Hiding Recycle Bin from desktop..."
+	$RegKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies"
+	If(Test-Path ($RegKey + "\NonEnum"))
+	{
+		$RegKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\NonEnum"
+		New-ItemProperty -path $RegKey -name "{645FF040-5081-101B-9F08-00AA002F954E}" -value 1 -PropertyType DWord -Force
+	}
+	else
+	{
+		New-Item -path $RegKey -name NonEnum
+		$RegKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\NonEnum"
+		New-ItemProperty -path $RegKey -name "{645FF040-5081-101B-9F08-00AA002F954E}" -value 1 -PropertyType String
+	}
+}
+	
+# Show Recycle Bin on desktop
+Function ShowRecycleBin {
+	$RegKey = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies"
+	Remove-ItemProperty -Path($RegKey + "\NonEnum") -name '{645FF040-5081-101B-9F08-00AA002F954E}'
+	If( (Get-Item -Path($RegKey + "\NonEnum")).ValueCount -eq 0 -and (Get-Item -Path($RegKey + "\NonEnum")).SubKeyCount -eq 0)
+		{
+			Remove-Item -Path($RegKey + "\NonEnum")
+		}
 }
 
 # Show User Folder shortcut on desktop
