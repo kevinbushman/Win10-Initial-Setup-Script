@@ -1,124 +1,133 @@
-# Windows 10 - Apply all
+# Default preset
 
 RequireAdmin
 
 DisableTelemetry
 DisableWiFiSense
-DisableSmartScreen
+# DisableSmartScreen
 DisableWebSearch
 DisableAppSuggestions
+DisableActivityHistory
 DisableBackgroundApps
-DisableLockScreenSpotlight
 DisableLocationTracking
 DisableMapUpdates
 DisableFeedback
+DisableTailoredExperiences
 DisableAdvertisingID
+DisableWebLangList
 DisableCortana
 DisableErrorReporting
-SetP2PUpdateLocal
-DisableAutoLogger
+# SetP2PUpdateLocal
 DisableDiagTrack
 DisableWAPPush
 
-SetUACLow
-EnableSharingMappedDrives
+# SetUACLow
+# EnableSharingMappedDrives
 DisableAdminShares
 # DisableSMB1
+# DisableSMBServer
+# DisableLLMNR
 SetCurrentNetworkPrivate
-SetUnknownNetworksPrivate
-DisableNetDevicesAutoInst
-EnableCtrldFolderAccess
-DisableFirewall
-DisableDefender
-DisableDefenderCloud
+# SetUnknownNetworksPrivate
+# DisableNetDevicesAutoInst
+# EnableCtrldFolderAccess
+# DisableFirewall
+# DisableDefender
+# DisableDefenderCloud
 EnableF8BootMenu
 SetDEPOptOut
+# EnableCIMemoryIntegrity
 DisableScriptHost
 EnableDotNetStrongCrypto
-EnableMeltdownCompatFlag
+# EnableMeltdownCompatFlag
 
-DisableUpdateMSRT
-DisableUpdateDriver
+# DisableUpdateMSRT
+# DisableUpdateDriver
 DisableUpdateRestart
-DisableHomeGroups
+# DisableHomeGroups
 DisableSharedExperiences
 DisableRemoteAssistance
 EnableRemoteDesktop
 DisableAutoplay
 DisableAutorun
-EnableStorageSense
-DisableDefragmentation
-DisableSuperfetch
-DisableIndexing
-SetBIOSTimeUTC
-EnableHibernation
-DisableSleepButton
-DisableSleepTimeout
-DisableFastStartup
+# EnableStorageSense
+# DisableDefragmentation
+# DisableSuperfetch
+# DisableIndexing
+# SetBIOSTimeUTC
+# EnableHibernation
+# DisableSleepButton
+# DisableSleepTimeout
+# DisableFastStartup
 
 DisableActionCenter
+HideAccountProtectionWarn
 DisableLockScreen
-DisableLockScreenRS1
+# DisableLockScreenRS1
 HideNetworkFromLockScreen
 HideShutdownFromLockScreen
 DisableStickyKeys
 ShowTaskManagerDetails
 ShowFileOperationsDetails
-EnableFileDeleteConfirm
-HideTaskbarSearchBox
+# EnableFileDeleteConfirm
+HideTaskbarSearch
 HideTaskView
 ShowSmallTaskbarIcons
-ShowTaskbarTitles
+SetTaskbarCombineWhenFull
 HideTaskbarPeopleIcon
 ShowTrayIcons
 DisableSearchAppInStore
 DisableNewAppPrompt
-SetControlPanelViewIcons
+# SetControlPanelSmallIcons
 SetVisualFXPerformance
-AddENKeyboard
-EnableNumlock
+# AddENKeyboard
+# EnableNumlock
 
 ShowKnownExtensions
 ShowHiddenFiles
+HideSelectCheckboxes
 HideSyncNotifications
 HideRecentShortcuts
 SetExplorerThisPC
 ShowThisPCOnDesktop
-ShowUserFolderOnDesktop
+# ShowUserFolderOnDesktop
 HideDesktopFromThisPC
-HideDesktopFromExplorer
+# HideDesktopFromExplorer
 HideDocumentsFromThisPC
-HideDocumentsFromExplorer
+# HideDocumentsFromExplorer
 HideDownloadsFromThisPC
-HideDownloadsFromExplorer
+# HideDownloadsFromExplorer
 HideMusicFromThisPC
-HideMusicFromExplorer
+# HideMusicFromExplorer
 HidePicturesFromThisPC
-HidePicturesFromExplorer
+# HidePicturesFromExplorer
 HideVideosFromThisPC
-HideVideosFromExplorer
+# HideVideosFromExplorer
 Hide3DObjectsFromThisPC
-Hide3DObjectsFromExplorer
-DisableThumbnails
-DisableThumbsDB
+# Hide3DObjectsFromExplorer
+# DisableThumbnails
+DisableThumbnailCache
+DisableThumbsDBOnNetwork
 
 DisableOneDrive
 UninstallOneDrive
 UninstallMsftBloat
 UninstallThirdPartyBloat
-UninstallWindowsStore
+# UninstallWindowsStore
 DisableXboxFeatures
 DisableAdobeFlash
-UninstallMediaPlayer
-UninstallInternetExplorer
-UninstallWorkFolders
-InstallLinuxSubsystem
-InstallHyperV
+DisableEdgeShortcutCreation
+# UninstallMediaPlayer
+# UninstallInternetExplorer
+# UninstallWorkFolders
+# InstallLinuxSubsystem
+# InstallHyperV
 SetPhotoViewerAssociation
 AddPhotoViewerOpenWith
-UninstallPDFPrinter
+# UninstallPDFPrinter
 UninstallXPSPrinter
 RemoveFaxPrinter
+# UninstallFaxAndScan
 
 # HideServerManagerOnLogin
 # DisableShutdownTracker
@@ -127,8 +136,8 @@ RemoveFaxPrinter
 # DisableIEEnhancedSecurity
 # EnableAudio
 
-UnpinStartMenuTiles
-UnpinTaskbarIcons
+# UnpinStartMenuTiles
+# UnpinTaskbarIcons
 
 WaitForKey
 Restart
