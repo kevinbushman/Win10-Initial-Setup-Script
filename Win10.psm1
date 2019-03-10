@@ -2875,6 +2875,19 @@ Function EnableThumbsDBOnNetwork {
 	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbsDBOnNetworkFolders" -ErrorAction SilentlyContinue
 }
 
+# Enable Last active click for taskbar icons
+Function EnableLastActiveClick {
+	Write-Output "Enabling Last Active Click..."
+	New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'LastActiveClick' -Value 1 -PropertyType DWord -Force -ErrorAction SilentlyContinue | Out-Null
+}
+
+# Disable Last active click for taskbar icons
+Function DisableLastActiveClick {
+	Write-Output "Disabling Last Active Click..."
+	Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'LastActiveClick' -Force -ErrorAction SilentlyContinue
+}
+
+
 ##########
 #endregion Explorer UI Tweaks
 ##########
