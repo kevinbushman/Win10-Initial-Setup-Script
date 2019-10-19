@@ -188,6 +188,7 @@ Hide3DObjectsFromThisPC         # Show3DObjectsInThisPC
 # DisableThumbnails             # EnableThumbnails
 DisableThumbnailCache           # EnableThumbnailCache
 DisableThumbsDBOnNetwork        # EnableThumbsDBOnNetwork
+EnableLastActiveClick           # DisableLastActiveClick
 
 ### Application Tweaks ###
 DisableOneDrive                 # EnableOneDrive
